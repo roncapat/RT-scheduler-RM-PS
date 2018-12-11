@@ -316,10 +316,11 @@ void *periodic_task_runner( void *ptr){
     printf("\nS%d ", idx); print_timespec(start);fflush(stdout);
     printf("E%d ", idx); print_timespec(end);fflush(stdout);
     printf("T%d ", idx); print_timespec(elapsedtime);fflush(stdout);
+    printf("D%d ", idx); print_timespec(next_arrival_time[idx]);fflush(stdout);
     
-    if (sub(next_arrival_time[idx], ora, &waittime) == -1){
+    if (sub(next_arrival_time[idx], end, &waittime) == -1){
       ++missed_deadlines[idx];
-      //printf("E%d ", idx); print_timespec(elapsedtime);fflush(stdout);
+      printf("MISSED DEADLINE\n");fflush(stdout);
     } else {
       //printf("E%d ", idx); print_timespec(elapsedtime);fflush(stdout);
       //printf("W%d ", idx); print_timespec(waittime); printf("\n");fflush(stdout);
@@ -370,7 +371,7 @@ void print_timespec(struct timespec t){
 
 
 /*** DUMMY CODE FOR PERIODIC AND APERIODIC TASKS ***/
-#define EXT 150
+#define EXT 350
 unsigned int seed = 0;
 
 void short_task_code_1(){

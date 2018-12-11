@@ -1,4 +1,4 @@
-CCFLAGS = -W -Wall -Wextra
+CCFLAGS = -W -Wall -Wextra -O0
 LDFLAGS = -lrt -lpthread
 
 all: sched demo
